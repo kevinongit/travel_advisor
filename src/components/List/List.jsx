@@ -26,7 +26,7 @@ const List = ({
   const [elRefs, setElRefs] = useState([])
 
   useEffect(() => {
-    const refs = Array(places?.length)
+    const refs = new Array(places?.length)
       .fill()
       .map((_, i) => elRefs[i] || createRef())
     console.log({refs})

@@ -12,6 +12,7 @@ const Map = ({
   coordinates,
   places,
   setChildClicked,
+  weatherData,
 }) => {
   const classes = useStyles()
   const isDesktop = useMediaQuery('(min-width:600px)')
@@ -63,10 +64,26 @@ const Map = ({
                       : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'
                   }
                   alt={place.name}
+                  onClick={() => {
+                    console.log({place})
+                  }}
                 />
-                <Rating size="small" value={Number(place.rating)} readOnly />
+                <Rating
+                  size="small"
+                  value={Number(place.rating)}
+                  precision={0.2}
+                  readOnly
+                />
               </Paper>
             )}
+          </div>
+        ))}
+        {weatherData?.list?.map((data, i) => (
+          <div key={i} lat={data.coord.lat} lng={data.coord.lng}>
+            <img
+              src={`https://openweathermap.org/img/w/${data.weather[0].icon}.png`}
+              height="100"
+            />
           </div>
         ))}
       </GoogleMapReact>
